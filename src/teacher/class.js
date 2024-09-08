@@ -72,7 +72,7 @@ const StudentTable = () => {
   const fetchStudentsByClass = (classData) => {
     const { University, College, Department, Specialization, level, groop, Scale } = classData;
     axios
-      .post('${API_URL}user/students/class', {
+      .post(`${API_URL}user/students/class`, {
         University,
         College,
         Department,
