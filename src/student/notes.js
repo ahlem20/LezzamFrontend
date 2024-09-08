@@ -12,7 +12,7 @@ const NonActiveProjectsTable = () => {
       try {
         const user = JSON.parse(localStorage.getItem('lezzam'));
         const studentId = user._id;
-        const response = await axios.get(`${API_URL}/project/projects/active/student/${studentId}`);
+        const response = await axios.get(`${API_URL}project/projects/active/student/${studentId}`);
         setProjects(response.data);
       } catch (err) {
         setError(err.message);
