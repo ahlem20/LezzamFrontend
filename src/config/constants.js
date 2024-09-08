@@ -1,2 +1,2 @@
 // src/config/constants.js
-export const API_URL = 'http://localhost:3500/';
+export const API_URL = 'https://lezzambackend.onrender.com/';
