@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { CiLogout } from "react-icons/ci";
 
 import { API_URL } from '../config/constants';
@@ -61,7 +61,7 @@ const Home = () => {
       <div className="flex-grow container mx-auto px-4 py-12 flex justify-center items-center text-right">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           {/* Button 1 */}
-         <a href='/note'><div
+         <Link to='/note'><div
             className="bg-cover bg-center bg-no-repeat text-white text-center py-12 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 flex justify-center items-center"
             style={{
               backgroundImage: 'url("./background.jpg")',
@@ -70,10 +70,10 @@ const Home = () => {
             }}
           >
             <h2 className="text-2xl md:text-3xl font-semibold"> قائمة العلامات</h2>
-          </div></a> 
+          </div></Link> 
 
           {/* Button 2 */}
-          <a href='/list'>
+          <Link to='/list'>
           <div
             className="bg-cover bg-center bg-no-repeat text-white text-center py-12 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 flex justify-center items-center"
             style={{
@@ -83,10 +83,10 @@ const Home = () => {
             }}
           >
             <h2 className="text-2xl md:text-3xl font-semibold">قائمة المراجع</h2>
-          </div></a>
+          </div></Link>
 
           {/* Button 3 */}
-          <a href='/qr'>
+          <Link to='/qr'>
           <div
             className="bg-cover bg-center bg-no-repeat text-white text-center py-12 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 flex justify-center items-center"
             style={{
@@ -96,7 +96,7 @@ const Home = () => {
             }}
           >
             <h2 className="text-2xl md:text-3xl font-semibold"> انشاء مرجع</h2>
-          </div></a>
+          </div></Link>
         </div>
       </div>
     </div>
