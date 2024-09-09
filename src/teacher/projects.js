@@ -48,15 +48,12 @@ const NonActiveProjectsTable = () => {
     // Handle project deletion for text projects
     const handleDelete = async (projectId) => {
         try {
-            await axios.delete(`${API_URL}/project/projects/${projectId}`);
+            await axios.delete(`${API_URL}project/projects/${projectId}`);
             setProjects(projects.filter((project) => project._id !== projectId)); // Remove the deleted project from state
         } catch (err) {
             console.error('Error deleting project:', err.response?.data?.message || err.message);
         }
     };
-
-    if (loading) return <div>جار التحميل...</div>;
-    if (error) return <div className="text-red-500">{error}</div>;
 
     return (
         <div dir="rtl" className="container mx-auto p-4">
@@ -70,19 +67,26 @@ const NonActiveProjectsTable = () => {
                 إضافة مشروع جديد
             </button>
 
+            {/* Show error message if an error occurred */}
+            {error && <div className="text-red-500 mb-4">{error}</div>}
+
             {/* Project Table */}
-            {projects.length > 0 ? (
-                <table className="table-auto w-full text-right border-collapse border border-gray-400">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="border border-gray-400 px-4 py-2">العنوان</th>
-                            <th className="border border-gray-400 px-4 py-2">المقياس</th>
-                            <th className="border border-gray-400 px-4 py-2">اسم المعلم</th>
-                            <th className="border border-gray-400 px-4 py-2">الإجراءات</th>
+            <table className="table-auto w-full text-right border-collapse border border-gray-400">
+                <thead>
+                    <tr className="bg-gray-200">
+                        <th className="border border-gray-400 px-4 py-2">العنوان</th>
+                        <th className="border border-gray-400 px-4 py-2">المقياس</th>
+                        <th className="border border-gray-400 px-4 py-2">اسم المعلم</th>
+                        <th className="border border-gray-400 px-4 py-2">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {loading ? (
+                        <tr>
+                            <td colSpan="4" className="text-center py-4">جار التحميل...</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {projects.map((project) => (
+                    ) : projects.length > 0 ? (
+                        projects.map((project) => (
                             <tr key={project._id} className="hover:bg-gray-100">
                                 <td className="border border-gray-400 px-4 py-2">{project.title}</td>
                                 <td className="border border-gray-400 px-4 py-2">{project.scale}</td>
@@ -96,12 +100,14 @@ const NonActiveProjectsTable = () => {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <div className="text-center py-4">لم يتم العثور على مشاريع غير نشطة</div>
-            )}
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" className="text-center py-4">لم يتم العثور على مشاريع</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
 
             {/* Popup form for creating a new project */}
             {showForm && (
