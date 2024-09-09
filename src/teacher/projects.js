@@ -14,7 +14,7 @@ const NonActiveProjectsTable = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get(`${API_URL}/project/projects/teacher/${user.username}/non-active`);
+                const response = await axios.get(`${API_URL}project/projects/teacher/${user.username}/non-active`);
                 
                 // Ensure the response is an array
                 if (Array.isArray(response.data)) {
