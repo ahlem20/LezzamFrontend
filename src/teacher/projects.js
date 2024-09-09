@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { API_URL } from '../config/constants';
+
 const NonActiveProjectsTable = () => {
     const user = JSON.parse(localStorage.getItem('lezzam')); // Get user from localStorage
     const [projects, setProjects] = useState([]);
