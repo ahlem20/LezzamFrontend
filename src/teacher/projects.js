@@ -35,7 +35,7 @@ const NonActiveProjectsTable = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${API_URL}/project/projects/text`, newProject);
+            const response = await axios.post(`${API_URL}project/projects/text`, newProject);
             console.log('New project created:', response.data);
             setShowForm(false); // Close the popup after submission
             setNewProject({ title: '', scale: '', teacherName: user.username }); // Reset form
