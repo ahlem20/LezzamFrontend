@@ -14,7 +14,7 @@ const NonActiveProjectsTable = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get(`${API_URL}project/projects/teacher/${user.username}/non-active`);
+                const response = await axios.get(`${API_URL}/project/projects/teacher/${user.username}/non-active`);
                 
                 // Ensure the response is an array
                 if (Array.isArray(response.data)) {
@@ -35,7 +35,7 @@ const NonActiveProjectsTable = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('${API_URL}project/projects/text', newProject);
+            const response = await axios.post(`${API_URL}/project/projects/text`, newProject);
             console.log('New project created:', response.data);
             setShowForm(false); // Close the popup after submission
             setNewProject({ title: '', scale: '', teacherName: user.username }); // Reset form
@@ -48,7 +48,7 @@ const NonActiveProjectsTable = () => {
     // Handle project deletion for text projects
     const handleDelete = async (projectId) => {
         try {
-            await axios.delete(`${API_URL}project/projects/${projectId}`);
+            await axios.delete(`${API_URL}/project/projects/${projectId}`);
             setProjects(projects.filter((project) => project._id !== projectId)); // Remove the deleted project from state
         } catch (err) {
             console.error('Error deleting project:', err.response?.data?.message || err.message);
@@ -71,18 +71,18 @@ const NonActiveProjectsTable = () => {
             </button>
 
             {/* Project Table */}
-            <table className="table-auto w-full text-right border-collapse border border-gray-400">
-                <thead>
-                    <tr className="bg-gray-200">
-                        <th className="border border-gray-400 px-4 py-2">العنوان</th>
-                        <th className="border border-gray-400 px-4 py-2">المقياس</th>
-                        <th className="border border-gray-400 px-4 py-2">اسم المعلم</th>
-                        <th className="border border-gray-400 px-4 py-2">الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {projects.length > 0 ? (
-                        projects.map((project) => (
+            {projects.length > 0 ? (
+                <table className="table-auto w-full text-right border-collapse border border-gray-400">
+                    <thead>
+                        <tr className="bg-gray-200">
+                            <th className="border border-gray-400 px-4 py-2">العنوان</th>
+                            <th className="border border-gray-400 px-4 py-2">المقياس</th>
+                            <th className="border border-gray-400 px-4 py-2">اسم المعلم</th>
+                            <th className="border border-gray-400 px-4 py-2">الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {projects.map((project) => (
                             <tr key={project._id} className="hover:bg-gray-100">
                                 <td className="border border-gray-400 px-4 py-2">{project.title}</td>
                                 <td className="border border-gray-400 px-4 py-2">{project.scale}</td>
@@ -96,14 +96,12 @@ const NonActiveProjectsTable = () => {
                                     </button>
                                 </td>
                             </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="4" className="text-center py-4">لم يتم العثور على مشاريع</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <div className="text-center py-4">لم يتم العثور على مشاريع غير نشطة</div>
+            )}
 
             {/* Popup form for creating a new project */}
             {showForm && (
