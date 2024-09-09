@@ -97,7 +97,7 @@ const CreateProject = () => {
 
     try {
       // Make the API request
-      const response = await axios.post(`${API_URL}/project/projects`, projectData, {
+      const response = await axios.post(`${API_URL}project/projects`, projectData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
