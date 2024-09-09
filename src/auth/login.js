@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config/constants';
+import { Link } from 'react-router-dom';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -99,9 +99,9 @@ const Login = () => {
           <a href="#" className="text-blue-600 hover:underline">نسيت كلمة المرور؟</a>
         </p>
         <p className="mt-4 text-center">
-          <a href="/signin" className="text-green-600 font-medium text-lg hover:underline transition duration-300">
+          <Link href="/signin" className="text-green-600 font-medium text-lg hover:underline transition duration-300">
             اشترك الأن
-          </a>
+          </Link>
         </p>
       </div>
     </div>
