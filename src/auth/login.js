@@ -100,7 +100,7 @@ const Login = () => {
           <a href="#" className="text-blue-600 hover:underline">نسيت كلمة المرور؟</a>
         </p>
         <p className="mt-4 text-center">
-          <Link href="/signin" className="text-green-600 font-medium text-lg hover:underline transition duration-300">
+          <Link to="/signin" className="text-green-600 font-medium text-lg hover:underline transition duration-300">
             اشترك الأن
           </Link>
         </p>
