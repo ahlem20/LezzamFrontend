@@ -15,7 +15,7 @@ const StudentForm = ({ showModal, toggleModal }) => {
   const user = JSON.parse(localStorage.getItem('lezzam'));
   const username = user?.username;
   const [studentDetails, setStudentDetails] = useState({
-    roles: 'Student',
+    roles: '[Student]',
     University: '',
     College: '',
     Department: '',
