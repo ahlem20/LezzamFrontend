@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import { API_URL } from '../config/constants';
+
 const NonActiveProjectsTable = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ const NonActiveProjectsTable = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-6 flex justify-center items-center">
       <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-md" dir="rtl">
-         <h1 className="text-3xl font-bold mb-6 text-center">علامات المشاريع </h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">علامات المشاريع </h1>
         {error && <p className="text-red-500">{error}</p>}
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md text-right">
           <thead>
@@ -43,8 +43,8 @@ const NonActiveProjectsTable = () => {
           </thead>
           <tbody>
             {projects.map((project) => (
-              <tr key={project._id} >
-                <td className="border border-gray-300 px-4 py-2">{project.note}</td>
+              <tr key={project._id}>
+                <td className="border border-gray-300 px-4 py-2">{project.note || 'لا يوجد ملاحظة'}</td>
                 <td className="border border-gray-300 px-4 py-2">{project.title}</td>
                 <td className="border border-gray-300 px-4 py-2">{project.scale}</td>
                 <td className="border border-gray-300 px-4 py-2">{project.teacherName}</td>
