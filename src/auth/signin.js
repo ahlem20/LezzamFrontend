@@ -21,7 +21,6 @@ const SignIn = () => {
         username,
         password,
         email,
-        roles: [role], // Send role as an array
         phoneNumber,
         description,
       });
@@ -89,16 +88,7 @@ const SignIn = () => {
               required
             />
           </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">الدور</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-            >
-              <option value="Teacher">استاذ</option>
-            </select>
-          </div>
+       
           <div className="mb-6">
             <label className="block text-gray-700 font-medium mb-2">الوصف</label>
             <textarea
