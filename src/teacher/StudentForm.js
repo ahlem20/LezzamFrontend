@@ -14,17 +14,17 @@ const StudentForm = ({ showModal, toggleModal }) => {
   // استرجاع اسم المستخدم للمعلم من LocalStorage
   const user = JSON.parse(localStorage.getItem('lezzam'));
   const username = user?.username;
-const [studentDetails, setStudentDetails] = useState({
-  roles: ['Student'], // Corrected to an array
-  University: '',
-  College: '',
-  Department: '',
-  Specialization: '',
-  groop: '',
-  level: '',
-  Scale: '',
-  teacherName: user?.username,
-});
+  const [studentDetails, setStudentDetails] = useState({
+    roles: ['Student'],
+    University: '',
+    College: '',
+    Department: '',
+    Specialization: '',
+    groop: '',
+    level: '',
+    Scale: '',
+    teacherName: user?.username,
+  });
 
   // Handle bulk student field changes (for username and password)
   const handleStudentChange = (index, e) => {
@@ -51,26 +51,27 @@ const [studentDetails, setStudentDetails] = useState({
   };
 
   // Handle form submission
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const studentsToCreate = newStudents.map((student) => ({
-      ...studentDetails,
-      username: student.username,
-      password: student.password,
-    }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Create payload for each student
+      const studentsToCreate = newStudents.map(student => ({
+        ...studentDetails,
+        username: student.username,
+        password: student.password,
+      }));
 
-    for (const student of studentsToCreate) {
-      await axios.post(`${API_URL}user/students`, student);
+      // Send requests to the server to create each student
+      for (const student of studentsToCreate) {
+        await axios.post(`${API_URL}user/students`, student);
+      }
+
+      toggleModal(); // Close modal after submission
+      window.location.reload(); // Reload to update the table
+    } catch (error) {
+      console.error(error);
     }
-
-    toggleModal();
-    window.location.reload();
-  } catch (error) {
-    console.error('Submission error:', error.response?.data || error.message);
-    alert(`Error: ${error.response?.data?.message || 'Failed to add students'}`);
-  }
-};
+  };
 
   return (
     <Modal 
